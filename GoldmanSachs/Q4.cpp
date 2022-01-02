@@ -1,55 +1,55 @@
 // { Driver Code Starts
 #include <bits/stdc++.h>
-
 using namespace std;
 
-#define ull unsigned long long
-
-
- // } Driver Code Ends
-//User function template for C++
-class Solution{
-public:	
-	// #define ull unsigned long long
-	/* Function to get the nth ugly number*/
-	ull getNthUglyNo(int n) {
-	    // code here
-	    if (n == 1 or n == 2 or n == 3 or n == 4 or n == 5)
-	        return n;
+string encode(string src);    
  
-        set<long long int> s;
-        s.insert(1);
-        n--;
- 
-        while (n) {
-            auto it = s.begin();
- 
-            long long x = *it;
-            s.erase(it);
-     
-            s.insert(x * 2);
-            s.insert(x * 3);
-            s.insert(x * 5);
-            n--;
-        }
- 
-        return *s.begin();
-        
-    }
-};
-
-// { Driver Code Starts.
-
 int main() {
-    int t;
-    cin >> t;
-    while (t--) {
-        int n;
-        cin >> n;
-        Solution ob;
-        auto ans = ob.getNthUglyNo(n);
-        cout << ans << "\n";
+	
+	int T;
+	cin>>T;
+	while(T--)
+	{
+		string str;
+		cin>>str;
+		
+		cout<<encode(str)<<endl;
+	}
+	return 0;
+}// } Driver Code Ends
+
+
+/*You are required to complete this function */
+
+string encode(string src)
+{     
+  //Your code here 
+    vector<pair<char,int>> v;
+    int count = 1;
+    char c = src[0];
+    
+    for(int i = 1; i<src.size(); i++){
+        if(src[i]==c){
+            count+=1;
+        }
+        
+        else{
+            v.push_back(make_pair(c, count));
+            c = src[i];
+            count = 1;
+        }
     }
-    return 0;
-}
-  // } Driver Code Ends
+    
+    v.push_back(make_pair(c,count));
+    string s ="";
+    
+    for(auto x: v){
+        s += x.first;
+        s += to_string(x.second);
+    }
+  
+  return s;
+}     
+
+ 
+
