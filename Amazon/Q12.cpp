@@ -15,7 +15,8 @@ class Solution{
  
         while (n > 0){
  
-            index = ((n - 1) % 26);
+            index = (n - 1) % 26;
+	    // result += char(65 + index);
             result += ('A' + index);
             n = (n - 1) / 26;
         }
